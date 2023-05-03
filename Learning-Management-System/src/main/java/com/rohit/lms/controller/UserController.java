@@ -1,52 +1,54 @@
 package com.rohit.lms.controller;
 
+
+
 import javax.validation.Valid;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rohit.lms.Service.UserService;
 import com.rohit.lms.dto.AppResponse;
+import com.rohit.lms.dto.CreateUserDto;
+import com.rohit.lms.dto.LoginDto;
 import com.rohit.lms.dto.UserDto;
+import com.rohit.lms.service.UserService;
 
 import lombok.AllArgsConstructor;
 
-
-
 @AllArgsConstructor
-@CrossOrigin
+@RequestMapping(value = "/user")
 @RestController
-@RequestMapping("/users")
 public class UserController {
+
     private final UserService service;
 
+    @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE )
+    public ResponseEntity<AppResponse<Integer>> signup(@Valid @RequestBody CreateUserDto dto) {
+        final Integer sts = service.signup(dto);
 
-    @PostMapping(value="/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> create(@Valid @RequestBody UserDto dto) {
-        final Integer sts= service.createUser(dto);
-        AppResponse<Integer> response = AppResponse.<Integer>builder()
-                .sts("Success")
-                .msg("User created successfully")
+        AppResponse<Integer> res = AppResponse.<Integer>builder()
+                .sts("success")
+                .msg("User Created")
                 .bd(sts)
                 .build();
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+        return ResponseEntity.ok().body(res);
     }
 
-    @PostMapping(value="/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<UserDto>> login(@RequestParam String email, @RequestParam String password) {
-        UserDto user = service.loginUser(email, password);
-        AppResponse<UserDto> response = AppResponse.<UserDto>builder()
-                .sts("Success")
-                .msg("User logged in successfully")
-                .bd(user)
+    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE )
+    public ResponseEntity<AppResponse<UserDto>> login(@Valid @RequestBody LoginDto dto) {
+        final UserDto resDto = service.login(dto);
+
+        AppResponse<UserDto> res = AppResponse.<UserDto>builder()
+                .sts("success")
+                .msg("Login Success")
+                .bd(resDto)
                 .build();
-        return ResponseEntity.ok().body(response);
+
+        return ResponseEntity.ok().body(res);
     }
 }
