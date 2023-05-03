@@ -1,0 +1,9 @@
+POST http://localhost:8080/courses/ HTTP/1.1
+content-type: application/json
+
+{
+  "courseName":"java Fullstack",
+  "teacherId" : 1,
+  "startDate" :"2022-03-25",
+  "endDate" :"2022-04-25"
+}

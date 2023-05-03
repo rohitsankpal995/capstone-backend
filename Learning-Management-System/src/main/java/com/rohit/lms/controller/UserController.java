@@ -4,6 +4,7 @@ package com.rohit.lms.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +24,8 @@ import lombok.AllArgsConstructor;
 @RequestMapping(value = "/user")
 @RestController
 public class UserController {
-
-    private final UserService service;
+    @Autowired
+    private  UserService service;
 
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<AppResponse<Integer>> signup(@Valid @RequestBody CreateUserDto dto) {

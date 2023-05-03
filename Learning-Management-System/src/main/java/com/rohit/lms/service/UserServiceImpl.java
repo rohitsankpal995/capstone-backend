@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rohit.lms.domain.User;
@@ -18,8 +19,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-
-    private final UserRepository repository;
+    @Autowired
+    private  UserRepository repository;
 
     @Override
     public Integer signup(CreateUserDto dto) {
