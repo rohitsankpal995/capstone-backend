@@ -1,9 +1,15 @@
 package com.rohit.lms.repository;
 
-import com.rohit.lms.domain.User;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import com.rohit.lms.domain.User;
 
-    User findByUsername(String username);
+
+
+public interface UserRepository extends JpaRepository<User,Long> {
+    Optional<User> findByEmail(String email);
+    Optional<User> findByEmailAndPassword(String email, String password);
+    
 }
