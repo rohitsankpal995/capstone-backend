@@ -1,13 +1,12 @@
 
-GET http://localhost:8080/user
-####
+### Create New User
 POST http://localhost:8080/user/ HTTP/1.1
 content-type: application/json
 
 {
-    "userName" : "aaaa",
+    "userName" : "ccc",
     "password" : "123",
-    "role" : "student"
+    "role" : "admin"
 }
 
 ### Login
@@ -15,6 +14,6 @@ POST http://localhost:8080/user/login HTTP/1.1
 content-type: application/json
 
 {
-    "userName" : "bbb",
+    "userName" : "ccc",
     "password" : "123"
 }

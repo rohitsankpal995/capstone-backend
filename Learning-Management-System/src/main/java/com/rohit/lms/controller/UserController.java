@@ -4,9 +4,9 @@ package com.rohit.lms.controller;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,22 +20,23 @@ import com.rohit.lms.service.UserService;
 
 import lombok.AllArgsConstructor;
 
+@CrossOrigin
 @AllArgsConstructor
 @RequestMapping(value = "/user")
 @RestController
 public class UserController {
-    @Autowired
-    private  UserService service;
+    
+    private final UserService service;
 
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<AppResponse<Integer>> signup(@Valid @RequestBody CreateUserDto dto) {
         final Integer sts = service.signup(dto);
 
         AppResponse<Integer> res = AppResponse.<Integer>builder()
-                .sts("success")
-                .msg("User Created")
-                .bd(sts)
-                .build();
+                                                .sts("success")
+                                                .msg("User Created")
+                                                .bd(sts)
+                                                .build();
 
         return ResponseEntity.ok().body(res);
     }
@@ -45,10 +46,10 @@ public class UserController {
         final UserDto resDto = service.login(dto);
 
         AppResponse<UserDto> res = AppResponse.<UserDto>builder()
-                .sts("success")
-                .msg("Login Success")
-                .bd(resDto)
-                .build();
+                                                .sts("success")
+                                                .msg("Login Success")
+                                                .bd(resDto)
+                                                .build();
 
         return ResponseEntity.ok().body(res);
     }

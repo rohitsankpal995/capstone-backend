@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/learningSys
+    url: jdbc:mysql://localhost:3306/cpstone_LMS
     username: root
     password: Rohit@2000
   # below are optional properties
