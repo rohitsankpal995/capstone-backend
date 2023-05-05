@@ -81,7 +81,7 @@ public class CoursesController {
 
         final AppResponse<CoursesDto> response = AppResponse.<CoursesDto>builder()
                 .sts("success")
-                .msg("booking Details")
+                .msg("Course Details")
                 .bd(dto)
                 .build();
         return ResponseEntity.ok().body(response);

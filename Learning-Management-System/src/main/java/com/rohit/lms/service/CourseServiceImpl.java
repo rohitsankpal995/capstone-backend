@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Service
 public class CourseServiceImpl implements CourseService {
 
+
     private final CoursesRepository repository;
     private final CourseMapper mapper;
 
@@ -38,6 +39,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<CoursesDto> all() {
+        repository.findAll().forEach(c->System.out.println(c.getCourseName()));
         return repository.findAll()
                 .stream()
                 // .map( invoice -> mapper.toDto(invoice) )

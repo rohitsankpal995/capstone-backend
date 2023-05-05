@@ -3,9 +3,9 @@
 POST http://localhost:8080/courses/createNewCourse HTTP/1.1
 content-type: application/json
 
-{ "courseId" : "2", 
-  "courseName" : "Python", 
-  "facultyName" : "Shweta", 
+{ "courseId" : "3", 
+  "courseName" : "DSA", 
+  "facultyName" : "rohit", 
   "material" : "https://www.w3schools.com/html/html_css.asp",
   "recordings": "https://meet.google.com/woi-gjix-jsx",
   "startDate":"2020-01-01", 

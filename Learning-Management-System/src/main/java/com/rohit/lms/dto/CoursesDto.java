@@ -14,13 +14,14 @@ import javax.validation.constraints.NotNull;
 @Setter
 @ToString
 public class CoursesDto {
+    private long courseID;
 
     @NotEmpty(message = "Username cant be empty")
     @NotNull(message = "Username cant be null")
     @NotBlank(message = "Username cant be blank")
     private String courseName;
 
-    private long courseID;
+    
 
     @NotEmpty(message = "Username cant be empty")
     @NotNull(message = "Username cant be null")
@@ -39,6 +40,5 @@ public class CoursesDto {
     private String recordings;
 
 
-    public CoursesDto(long courseId, String courseName, String facultyName, LocalDate startDate, LocalDate endDate, String material, String recording) {
-    }
+
 }
