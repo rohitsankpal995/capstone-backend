@@ -26,7 +26,7 @@ public class AppExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(UserNotFoundException.class)
+    @ExceptionHandler({UserNotFoundException.class,CourseNotFoundException.class})
     public Map<String, String> handleAppExceptions(RuntimeException ex) {
         Map<String, String> errors = new HashMap<>();
         errors.put("msg", ex.getMessage());

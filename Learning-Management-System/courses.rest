@@ -16,7 +16,7 @@ content-type: application/json
 GET http://localhost:8080/courses/list
 
 ### Delete user By Id 
-DELETE http://localhost:8080/courses/delete/
+DELETE http://localhost:8080/courses/delete/6
 
 ### Get All user 
-GET http://localhost:8080/courses/getCourseById/2
+GET http://localhost:8080/courses/getCourseById/8
