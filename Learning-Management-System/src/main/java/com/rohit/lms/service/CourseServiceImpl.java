@@ -21,25 +21,19 @@ import java.util.stream.Collectors;
 @Service
 public class CourseServiceImpl implements CourseService {
 
-
     private final CoursesRepository repository;
     private final CourseMapper mapper;
 
 
+
     @Override
-    public Integer createNewBooking(CoursesDto dto) {
+    public Integer createNewCourse(CoursesDto dto) {
         repository.save(mapper.toDomain(dto));
         return 1;
     }
 
     @Override
-    public Integer createNewCourse(CoursesDto dto) {
-        return null;
-    }
-
-    @Override
     public List<CoursesDto> all() {
-        repository.findAll().forEach(c->System.out.println(c.getCourseName()));
         return repository.findAll()
                 .stream()
                 // .map( invoice -> mapper.toDto(invoice) )

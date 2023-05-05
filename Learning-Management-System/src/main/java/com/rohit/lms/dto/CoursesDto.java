@@ -21,7 +21,7 @@ public class CoursesDto {
     @NotBlank(message = "Username cant be blank")
     private String courseName;
 
-    
+
 
     @NotEmpty(message = "Username cant be empty")
     @NotNull(message = "Username cant be null")
