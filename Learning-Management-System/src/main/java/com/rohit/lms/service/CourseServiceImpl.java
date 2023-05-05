@@ -62,6 +62,6 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public CoursesDto fetchCourseDetails(Long courseID) throws CourseNotFoundException {
         Optional<Courses> op = repository.findById(courseID);
-        return mapper.toDto(op.orElseThrow(() -> new CourseNotFoundException("Booking " + courseID + " Not Found")));
+        return mapper.toDto(op.orElseThrow(() -> new CourseNotFoundException("Course " + courseID + " Not Found")));
     }
 }
