@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @ToString
 public class CoursesDto {
-    private long courseID;
+    private long courseId;
 
     @NotEmpty(message = "Username cant be empty")
     @NotNull(message = "Username cant be null")
@@ -37,7 +37,7 @@ public class CoursesDto {
     @NotBlank(message = "Material link cannot be blank")
     private String material;
     @NotBlank(message = "Material link cannot be blank")
-    private String recordings;
+    private String recording;
 
 
 

@@ -4,20 +4,34 @@ POST http://localhost:8080/courses/createNewCourse HTTP/1.1
 content-type: application/json
 
 { 
-  "courseId" : "1", 
+  "courseId" : "3", 
   "courseName" : "Java", 
-  "facultyName" : "abhijeet", 
+  "facultyName" : "rohan", 
   "material" : "https://www.w3schools.com/html/html_css.asp",
   "recordings": "https://meet.google.com/woi-gjix-jsx",
   "startDate":"2020-01-01", 
   "endDate": "2022-01-02" 
 }
 
-### Get All user 
+### Get All Courses
 GET http://localhost:8080/courses/list
 
 ### Delete user By Id 
-DELETE http://localhost:8080/courses/delete/6
+DELETE http://localhost:8080/courses/delete/20
 
 ### Get All user 
-GET http://localhost:8080/courses/getCourseById/8
+GET http://localhost:8080/courses/getCourseById/16
+
+### update the course by id
+PUT http://localhost:8080/courses/updateCourse HTTP/1.1 
+content-type: application/json
+
+{
+   "courseId" : "22", 
+  "courseName" : "Machine Learning", 
+  "facultyName" : "aishwarya", 
+  "material" : "https://www.w3schools.com/html/html_css.asp",
+  "recording": "https://meet.google.com/woi-gjix-jsx",
+  "startDate":"2020-01-01", 
+  "endDate": "2022-01-02"
+}

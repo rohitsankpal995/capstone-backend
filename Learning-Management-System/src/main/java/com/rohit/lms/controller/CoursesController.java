@@ -50,7 +50,7 @@ public class CoursesController {
     @PutMapping(value = "/updateCourse", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<Integer>> updateCourse(@RequestBody CoursesDto dto) {
 
-        final Integer sts = service.updateCourse(dto);
+        final Integer sts = service.updateCourse(dto, dto.getCourseId());
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
                 .sts("success")

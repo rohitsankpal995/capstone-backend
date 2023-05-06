@@ -15,7 +15,7 @@ public interface CourseService {
 
     Integer deleteCourse(Long courseId) throws UserNotFoundException;
 
-    Integer updateCourse(CoursesDto dto);
+    Integer updateCourse(CoursesDto dto,Long courseId);
 
     CoursesDto fetchCourseDetails(Long id) throws UserNotFoundException;
 }
