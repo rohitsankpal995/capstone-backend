@@ -49,6 +49,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Integer updateCourse(CoursesDto courses, Long courseId) {
+        courses.setCourseId(courseId);
         repository.save(mapper.toDomain(courses));
         return 1;
     }

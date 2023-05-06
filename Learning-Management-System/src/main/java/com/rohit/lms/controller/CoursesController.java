@@ -47,10 +47,10 @@ public class CoursesController {
 
         return ResponseEntity.ok().body(response);
     }
-    @PutMapping(value = "/updateCourse", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> updateCourse(@RequestBody CoursesDto dto) {
+    @PutMapping(value = "/updateCourse/{courseId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<Integer>> updateCourse(@RequestBody CoursesDto dto,@PathVariable Long courseId) {
 
-        final Integer sts = service.updateCourse(dto, dto.getCourseId());
+        final Integer sts = service.updateCourse(dto,courseId);
 
         final AppResponse<Integer> response = AppResponse.<Integer>builder()
                 .sts("success")

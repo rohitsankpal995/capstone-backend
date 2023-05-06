@@ -23,11 +23,11 @@ DELETE http://localhost:8080/courses/delete/20
 GET http://localhost:8080/courses/getCourseById/16
 
 ### update the course by id
-PUT http://localhost:8080/courses/updateCourse HTTP/1.1 
+PUT http://localhost:8080/courses/updateCourse/16 HTTP/1.1 
 content-type: application/json
 
 {
-   "courseId" : "22", 
+  "courseId" : "16", 
   "courseName" : "Machine Learning", 
   "facultyName" : "aishwarya", 
   "material" : "https://www.w3schools.com/html/html_css.asp",
