@@ -1,6 +1,7 @@
 package com.rohit.lms.service;
 
 import com.rohit.lms.dto.CoursesDto;
+import com.rohit.lms.exception.CourseNotFoundException;
 import com.rohit.lms.exception.UserNotFoundException;
 
 import java.util.List;
@@ -18,4 +19,5 @@ public interface CourseService {
     Integer updateCourse(CoursesDto dto,Long courseId);
 
     CoursesDto fetchCourseDetails(Long id) throws UserNotFoundException;
+    List<CoursesDto> getCoursesByCourseName(String courseName) throws CourseNotFoundException;
 }

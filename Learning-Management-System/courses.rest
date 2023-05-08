@@ -4,7 +4,7 @@ POST http://localhost:8080/courses/createNewCourse HTTP/1.1
 content-type: application/json
 
 { 
-  "courseId" : "3", 
+ 
   "courseName" : "Java", 
   "facultyName" : "rohan", 
   "material" : "https://www.w3schools.com/html/html_css.asp",
@@ -17,13 +17,13 @@ content-type: application/json
 GET http://localhost:8080/courses/list
 
 ### Delete user By Id 
-DELETE http://localhost:8080/courses/delete/20
+DELETE http://localhost:8080/courses/delete/29
 
 ### Get All user 
 GET http://localhost:8080/courses/getCourseById/16
 
 ### update the course by id
-PUT http://localhost:8080/courses/updateCourse/16 HTTP/1.1 
+PUT http://localhost:8080/courses/updateCourse/25 HTTP/1.1 
 content-type: application/json
 
 {
@@ -35,3 +35,5 @@ content-type: application/json
   "startDate":"2020-01-01", 
   "endDate": "2022-01-02"
 }
+### Get Course By Name
+GET http://localhost:8080/courses/name?courseName=java-fullstack

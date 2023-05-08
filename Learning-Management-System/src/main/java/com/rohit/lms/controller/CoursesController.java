@@ -86,4 +86,11 @@ public class CoursesController {
                 .build();
         return ResponseEntity.ok().body(response);
     }
+
+    @GetMapping(value = "/name", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<List<CoursesDto>>> getCoursesByCourseName(@RequestParam String courseName) {
+        List<CoursesDto> courses = service.getCoursesByCourseName(courseName);
+        AppResponse<List<CoursesDto>> response = AppResponse.<List<CoursesDto>>builder().sts("success").msg("All Courses").bd(courses).build();
+        return ResponseEntity.status(200).body(response);
+    }
 }
