@@ -2,11 +2,7 @@ package com.rohit.lms.domain;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,4 +31,9 @@ public class User {
     @Column(nullable = false)
     private String role;
     private LocalDate created;
+
+    @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private List<Courses> courses=new ArrayList<>();
+
+
 }

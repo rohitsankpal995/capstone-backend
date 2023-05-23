@@ -20,4 +20,6 @@ public interface CourseService {
 
     CoursesDto fetchCourseDetails(Long id) throws UserNotFoundException;
     List<CoursesDto> getCoursesByCourseName(String courseName) throws CourseNotFoundException;
+
+
 }

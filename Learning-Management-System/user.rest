@@ -10,10 +10,25 @@ content-type: application/json
 }
 
 ### Login
-POST http://localhost:8080/user/login HTTP/1.1
+POST http://localhost:8080/user/loginv2 HTTP/1.1
 content-type: application/json
 
 {
-    "userName" : "hrishikesh",
+    "userName" : "rohit",
     "password" : "123"
 }
+### Book by user id and course id
+POST http://localhost:8080/user/2/userEnrollments/49 HTTP/1.1
+Content-Type: application/json
+
+
+
+### Get all users
+
+GET http://localhost:8080/user/users
+
+### Get all courses
+GET http://localhost:8080/user/getuserEnrollments/2
+
+### Get all studentEnrolled
+GET http://localhost:8080/user/allStudentEnrolled
