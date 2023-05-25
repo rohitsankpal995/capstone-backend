@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Getter
 public class LoginDto {
+    @NotBlank(message = "User name is mandatory")
+    @NotNull(message = "User name should not be null")
     private String userName;
     @NotNull(message = "Password should not be null")
     @NotBlank(message = "Password is mandatory")

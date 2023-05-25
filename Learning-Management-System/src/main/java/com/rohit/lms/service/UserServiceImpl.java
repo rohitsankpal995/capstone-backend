@@ -8,16 +8,13 @@ import java.util.stream.Collectors;
 
 import com.rohit.lms.domain.Courses;
 import com.rohit.lms.dto.*;
-import com.rohit.lms.exception.CourseNotFoundException;
-import com.rohit.lms.exception.DuplicateEventException;
-import com.rohit.lms.exception.InvalidRoleException;
+import com.rohit.lms.exception.*;
 import com.rohit.lms.repository.CoursesRepository;
 import com.rohit.lms.util.DynamicMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.rohit.lms.domain.User;
-import com.rohit.lms.exception.UserNotFoundException;
 import com.rohit.lms.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
@@ -33,11 +30,38 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer signup(CreateUserDto dto) {
-        User user = new User();
+        if (!"user".equals(dto.getRole()) && !"admin".equals(dto.getRole()) && !"faculty".equals(dto.getRole()))
+            throw new InvalidRoleException("Invalid role! Enter admin/user/faculty");
+        User user = dynamicMapper.convertor(dto, new User());
+        if (repository.existsByUserName(user.getUserName())) {
+            throw new DuplicateUserNameFoundException("User name  already used.");
+        }
         user.setCreated(LocalDate.now());
-        BeanUtils.copyProperties(dto, user);
+        isValidPassword(dto.getPassword());
         repository.save(user);
         return 1;
+    }
+    private void isValidPassword(String password) {
+        boolean isValid = true;
+        if (password.length() > 15 || password.length() < 8) {
+            throw new InvalidPasswordException("Password must be more than 8 characters and less than 20 characters in length.");
+        }
+        String upperCaseChars = "(.*[A-Z].*)";
+        if (!password.matches(upperCaseChars)) {
+            throw new InvalidPasswordException("Password must have atleast one uppercase character");
+        }
+        String lowerCaseChars = "(.*[a-z].*)";
+        if (!password.matches(lowerCaseChars)) {
+            throw new InvalidPasswordException("Password must have atleast one lowercase character");
+        }
+        String numbers = "(.*[0-9].*)";
+        if (!password.matches(numbers)) {
+            throw new InvalidPasswordException("Password must have atleast one number");
+        }
+        String specialChars = "(.*[@,#,$,%].*$)";
+        if (!password.matches(specialChars)) {
+            throw new InvalidPasswordException("Password must have atleast one special character among @#$%");
+        }
     }
 
     @Override
@@ -49,6 +73,12 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(user, userDto);
 
         return userDto;
+    }
+    @Override
+    public LoginResponseDto loginUserForResponse(LoginDto dto) {
+        User user = repository.findByUserNameAndPassword(dto.getUserName(), dto.getPassword())
+                .orElseThrow(() -> new UserNotFoundException("UseName/Password is not valid"));
+        return dynamicMapper.convertor(user, new LoginResponseDto());
     }
 
 //    @Override
@@ -140,13 +170,7 @@ public class UserServiceImpl implements UserService {
 //
 //        return collect;
 //    }
-    @Override
-    public LoginResponseDto loginUserForResponse(LoginDto dto) {
-        Optional<User> op = repository.findByUserNameAndPassword(dto.getUserName(), dto.getPassword());
 
-        User user = op.orElseThrow(() -> new UserNotFoundException("Email/Password is not valid"));
-        return dynamicMapper.convertor(user, new LoginResponseDto());
-    }
 
     @Override
     public List<UserDto> getAllUser() {

@@ -34,7 +34,7 @@ public class UserController {
                                                 .bd(sts)
                                                 .build();
 
-        return ResponseEntity.ok().body(res);
+        return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE )
@@ -47,7 +47,7 @@ public class UserController {
                                                 .bd(resDto)
                                                 .build();
 
-        return ResponseEntity.ok().body(res);
+        return ResponseEntity.status(HttpStatus.OK).body(res);
     }
     @PostMapping(value = "/loginv2", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<LoginResponseDto>> loginResponseDetails(@Valid @RequestBody LoginDto dto) {
