@@ -150,6 +150,30 @@ public class UserServiceImpl implements UserService {
         return studentEnrolledDtos;
     }
 
+    @Override
+    public Integer deleteUser(Long userId) throws UserNotFoundException {
+        repository.deleteById(userId);
+        return 1;
+    }
+
+//    @Override
+//    public Integer updateUser(UserDto user, Long userId) {
+//        user.setUserId(userId);
+//        repository.save(dynamicMapper.convertor(user,new User()));
+//        return 1;
+//    }
+    @Override
+    public Integer updateUser(CreateUserDto dto) {
+        isUserPresent(dto.getId());
+        repository.save(dynamicMapper.convertor(dto, new User()));
+        return 1;
+    }
+    private void isUserPresent(Long id) {
+        repository.findById(id).orElseThrow(() -> new CourseNotFoundException("No user found for " + id + " ID"));
+    }
+
+
+
     //    @Override
 //    public List<UserCoursesDto> getCurrentEnrollments(Long userId) {
 //        User user = repository.findById(userId)

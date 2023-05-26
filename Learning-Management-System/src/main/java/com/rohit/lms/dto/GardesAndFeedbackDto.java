@@ -18,13 +18,15 @@ import lombok.ToString;
 
 public class GardesAndFeedbackDto {
     private Long id;
-    @NotEmpty(message = "Comment cant be empty")
-    @NotNull(message = "Comment cant be null")
-    @NotBlank(message = "Comment cant be blank")
+    @NotEmpty(message = "feedback cant be empty")
+    @NotNull(message = "feedback cant be null")
+    @NotBlank(message = "feedback cant be blank")
     private String feedback;
 
-    @NotEmpty(message = "Rating cant be empty")
-    @NotNull(message = "Rating cant be null")
-    @NotBlank(message = "Rating cant be blank")
+    @NotEmpty(message = "Grade cant be empty")
+    @NotNull(message = "Grade cant be null")
+    @NotBlank(message = "Grade cant be blank")
     private Double grade;
+
+    private String courseName;
 }

@@ -116,5 +116,44 @@ public class UserController {
                 .build();
         return ResponseEntity.ok().body(response);
     }
+    @PutMapping(value = "/updateUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<Integer>> updateCourse(@RequestBody CreateUserDto dto) {
+
+        final Integer sts = service.updateUser(dto);
+
+        final AppResponse<Integer> response = AppResponse.<Integer>builder()
+                .sts("success")
+                .msg("User Updated Successfully")
+                .bd(sts)
+                .build();
+
+        return ResponseEntity.ok().body(response);
+    }
+//    @PutMapping(value = "/updateevent", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<AppResponse<Integer>> updateNewInvoice(@Valid @RequestBody UpdateEventDto dto) {
+//
+//        final Integer sts = adminService.updateEvent(dto);
+//
+//        final AppResponse<Integer> response = AppResponse.<Integer>builder()
+//                .msg("Event Updated Successfully")
+//                .bd(sts)
+//                .build();
+//
+//        return ResponseEntity.ok().body(response);
+//    }
+
+    @DeleteMapping(value = "/delete/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<Integer>> deleteCourse(@PathVariable Long userId) {
+
+        final Integer sts = service.deleteUser(userId);
+
+        final AppResponse<Integer> response = AppResponse.<Integer>builder()
+                .sts("success")
+                .msg("User Deleted Successfully")
+                .bd(sts)
+                .build();
+
+        return ResponseEntity.status(200).body(response);
+    }
 
 }
