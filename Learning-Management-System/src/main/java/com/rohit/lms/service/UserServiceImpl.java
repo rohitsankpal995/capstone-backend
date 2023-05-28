@@ -156,21 +156,27 @@ public class UserServiceImpl implements UserService {
         return 1;
     }
 
-//    @Override
-//    public Integer updateUser(UserDto user, Long userId) {
-//        user.setUserId(userId);
-//        repository.save(dynamicMapper.convertor(user,new User()));
-//        return 1;
-//    }
     @Override
     public Integer updateUser(CreateUserDto dto) {
         isUserPresent(dto.getId());
-        repository.save(dynamicMapper.convertor(dto, new User()));
+        Long id= dto.getId();
+        User user=repository.findById(id).orElseThrow(() -> new CourseNotFoundException("No user found for " + id + " ID"));
+        user.setUserName(dto.getUserName());
+        user.setPassword(dto.getPassword());
+        user.setRole(dto.getRole());
+        repository.save(user);
         return 1;
     }
     private void isUserPresent(Long id) {
         repository.findById(id).orElseThrow(() -> new CourseNotFoundException("No user found for " + id + " ID"));
     }
+
+//    @Override
+//    public Integer updateUser(CreateUserDto dto, Long userId) {
+//        dto.setId(userId);
+//        repository.save(dynamicMapper.convertor(dto, new User()));
+//        return 1;
+//    }
 
 
 

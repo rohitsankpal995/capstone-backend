@@ -129,18 +129,17 @@ public class UserController {
 
         return ResponseEntity.ok().body(response);
     }
-//    @PutMapping(value = "/updateevent", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<AppResponse<Integer>> updateNewInvoice(@Valid @RequestBody UpdateEventDto dto) {
-//
-//        final Integer sts = adminService.updateEvent(dto);
-//
+//    @CrossOrigin
+//    @PutMapping(value="/updateUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<AppResponse<Integer>> updateUser(@Valid @RequestBody CreateUserDto dto){
+//        final Integer sts = service.updateUser(dto);
 //        final AppResponse<Integer> response = AppResponse.<Integer>builder()
-//                .msg("Event Updated Successfully")
-//                .bd(sts)
-//                .build();
-//
+//                .sts("User Updated Successfully")
+//                .bd(sts).build();
 //        return ResponseEntity.ok().body(response);
+//
 //    }
+
 
     @DeleteMapping(value = "/delete/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<Integer>> deleteCourse(@PathVariable Long userId) {
