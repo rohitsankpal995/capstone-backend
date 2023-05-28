@@ -4,9 +4,9 @@ POST http://localhost:8080/user/ HTTP/1.1
 content-type: application/json
 
 {
-    "userName" : "rohit@123",
+    "userName" : "laxmi",
     "password" : "Rohit@1234",
-    "role" : "admin"
+    "role" : "teacher"
 }
 
 ### Login
@@ -43,4 +43,4 @@ content-type: application/json
 }
 
 ### Delete user By Id 
-DELETE http://localhost:8080/user/delete/64
+DELETE http://localhost:8080/user/delete/68

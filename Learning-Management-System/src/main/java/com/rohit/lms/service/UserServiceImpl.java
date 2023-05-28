@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer signup(CreateUserDto dto) {
-        if (!"user".equals(dto.getRole()) && !"admin".equals(dto.getRole()) && !"faculty".equals(dto.getRole()))
-            throw new InvalidRoleException("Invalid role! Enter admin/user/faculty");
+        if (!"user".equals(dto.getRole()) && !"admin".equals(dto.getRole()) && !"teacher".equals(dto.getRole()))
+            throw new InvalidRoleException("Invalid role! Enter admin/user/teacher");
         User user = dynamicMapper.convertor(dto, new User());
         if (repository.existsByUserName(user.getUserName())) {
             throw new DuplicateUserNameFoundException("User name  already used.");

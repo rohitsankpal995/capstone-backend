@@ -1,0 +1,29 @@
+### Create New Notification 
+POST http://localhost:8080/notification/ HTTP/1.1 
+content-type: application/json
+
+{ 
+     
+    "date" : "2023-08-12", 
+    "notification" :"todays meet is cancelled" 
+}
+
+### Get all Notifications 
+GET http://localhost:8080/notification/ HTTP/1.1
+
+### Delete Notification By Id 
+DELETE http://localhost:8080/notification/75
+
+### Get Notification By Id 
+GET http://localhost:8080/notification/76
+
+### Update Notification
+
+PUT http://localhost:8080/notification/ HTTP/1.1 
+content-type: application/json
+
+{
+    "id": 76, 
+    "date" : "2023-08-30", 
+    "notification" :"We will meet after some time "
+}
