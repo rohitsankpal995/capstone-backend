@@ -11,6 +11,7 @@ import com.rohit.lms.dto.*;
 import com.rohit.lms.exception.*;
 import com.rohit.lms.repository.CoursesRepository;
 import com.rohit.lms.util.DynamicMapper;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
 
     private final DynamicMapper dynamicMapper;
     private final CoursesRepository courseRepo;
+
 
     @Override
     public Integer signup(CreateUserDto dto) {
@@ -162,7 +164,7 @@ public class UserServiceImpl implements UserService {
         Long id= dto.getId();
         User user=repository.findById(id).orElseThrow(() -> new CourseNotFoundException("No user found for " + id + " ID"));
         user.setUserName(dto.getUserName());
-        user.setPassword(dto.getPassword());
+//        user.setPassword(dto.getPassword());
         user.setRole(dto.getRole());
         repository.save(user);
         return 1;
@@ -213,6 +215,19 @@ public class UserServiceImpl implements UserService {
         }
         return listusers;
     }
+    @Override
+    public UserUpadteDto fetchUserDetails(Long userId) throws UserNotFoundException {
+        isUserPresent(userId);
+        Long id= userId;
+        User user=repository.findById(id).orElseThrow(() -> new UserNotFoundException("No user found for " + id + " ID"));
+        Optional<User> op = repository.findById(userId);
+        return dynamicMapper.convertor(user, new UserUpadteDto());
+    }
+//    @Override
+//    public CoursesDto fetchCourseDetails(Long courseID) throws CourseNotFoundException {
+//        Optional<Courses> op = repository.findById(courseID);
+//        return mapper.toDto(op.orElseThrow(() -> new CourseNotFoundException("Course " + courseID + " Not Found")));
+//    }
 
 
 

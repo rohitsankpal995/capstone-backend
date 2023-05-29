@@ -154,5 +154,17 @@ public class UserController {
 
         return ResponseEntity.status(200).body(response);
     }
+    @GetMapping(value = "/getUserById/{userId}", produces = MediaType.APPLICATION_JSON_VALUE )
+    public ResponseEntity<AppResponse<UserUpadteDto>> getUserById(@PathVariable Long userId) {
+
+        final UserUpadteDto dto = service.fetchUserDetails(userId);
+
+        final AppResponse<UserUpadteDto> response = AppResponse.<UserUpadteDto>builder()
+                .sts("success")
+                .msg("Course Details")
+                .bd(dto)
+                .build();
+        return ResponseEntity.ok().body(response);
+    }
 
 }

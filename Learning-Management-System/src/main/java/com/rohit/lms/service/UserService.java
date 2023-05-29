@@ -25,6 +25,7 @@ public interface UserService {
     Integer deleteUser(Long userId) throws UserNotFoundException;
 
     Integer updateUser(CreateUserDto dto);
+    UserUpadteDto fetchUserDetails(Long id) throws UserNotFoundException;
 
 
 }
