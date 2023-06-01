@@ -161,7 +161,7 @@ public class UserController {
 
         final AppResponse<UserUpadteDto> response = AppResponse.<UserUpadteDto>builder()
                 .sts("success")
-                .msg("Course Details")
+                .msg("User Details")
                 .bd(dto)
                 .build();
         return ResponseEntity.ok().body(response);

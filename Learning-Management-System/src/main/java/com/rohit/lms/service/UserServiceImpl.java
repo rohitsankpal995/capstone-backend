@@ -162,7 +162,7 @@ public class UserServiceImpl implements UserService {
     public Integer updateUser(CreateUserDto dto) {
         isUserPresent(dto.getId());
         Long id= dto.getId();
-        User user=repository.findById(id).orElseThrow(() -> new CourseNotFoundException("No user found for " + id + " ID"));
+        User user=repository.findById(id).orElseThrow(() -> new UserNotFoundException("No user found for " + id + " ID"));
         user.setUserName(dto.getUserName());
 //        user.setPassword(dto.getPassword());
         user.setRole(dto.getRole());
@@ -170,38 +170,9 @@ public class UserServiceImpl implements UserService {
         return 1;
     }
     private void isUserPresent(Long id) {
-        repository.findById(id).orElseThrow(() -> new CourseNotFoundException("No user found for " + id + " ID"));
+        repository.findById(id).orElseThrow(() -> new UserNotFoundException("No user found for " + id + " ID"));
     }
 
-//    @Override
-//    public Integer updateUser(CreateUserDto dto, Long userId) {
-//        dto.setId(userId);
-//        repository.save(dynamicMapper.convertor(dto, new User()));
-//        return 1;
-//    }
-
-
-
-    //    @Override
-//    public List<UserCoursesDto> getCurrentEnrollments(Long userId) {
-//        User user = repository.findById(userId)
-//                .orElseThrow(() -> new UserNotFoundException("No User found for " + userId + " ID"));
-//
-//        if (user.getRole().equals("admin"))
-//            throw new InvalidRoleException("No bookings for Admin");
-//
-//        LocalDate currentDate = LocalDate.now();
-//
-//        List<UserCoursesDto> collect = user.getCourses().stream()
-//                .filter(enrollment -> enrollment.getEndDate().isAfter(currentDate))
-//                .map(enrollment -> dynamicMapper.convertor(enrollment, new UserCoursesDto()))
-//                .collect(Collectors.toList());
-//
-//        if (collect.isEmpty())
-//            throw new CourseNotFoundException("No courses found enroll one.");
-//
-//        return collect;
-//    }
 
 
     @Override
@@ -223,11 +194,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> op = repository.findById(userId);
         return dynamicMapper.convertor(user, new UserUpadteDto());
     }
-//    @Override
-//    public CoursesDto fetchCourseDetails(Long courseID) throws CourseNotFoundException {
-//        Optional<Courses> op = repository.findById(courseID);
-//        return mapper.toDto(op.orElseThrow(() -> new CourseNotFoundException("Course " + courseID + " Not Found")));
-//    }
+
 
 
 
